@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menus.HomeFragment">
+
+    <TextView
+        android:id="@+id/titleHome"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:layout_alignParentTop="true"
+
+        />
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleHome">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toStartOf="@+id/button"
+            android:layout_toLeftOf="@+id/button"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/txYear"
+                android:layout_alignParentTop="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Year"
+                android:textColor="@color/text_gray_200"
+                android:textSize="16sp"/>
+            <Spinner
+                android:id="@+id/spinnerYear"
+                android:layout_below="@id/txYear"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/txSeason"
+                android:layout_width="89dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="39dp"
+                android:layout_marginLeft="39dp"
+                android:layout_toEndOf="@+id/spinnerYear"
+                android:layout_toRightOf="@+id/spinnerYear"
+                android:text="Season"
+                android:textColor="@color/text_gray_200"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/spinnerSeason"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txSeason"
+                android:layout_marginStart="39dp"
+                android:layout_marginLeft="39dp"
+
+                android:layout_toEndOf="@+id/spinnerYear"
+                android:layout_toRightOf="@+id/spinnerYear" />
+        </RelativeLayout>
+        <ImageButton
+            android:layout_centerVertical="true"
+            android:id="@+id/btnFetch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_baseline_chevron_right_24"
+            android:background="@android:color/transparent"
+            android:text="Search" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvListAnime"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp" />
+
+</RelativeLayout>
