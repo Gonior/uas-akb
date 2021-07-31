@@ -1,7 +1,6 @@
 package com.example.gniar_animelist.menus
 
 import Anime
-import android.icu.text.NumberFormat
 import android.icu.text.NumberFormat.*
 import android.os.Build
 import android.os.Bundle
@@ -10,9 +9,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gniar_animelist.R
-import com.example.gniar_animelist.retrofitest.helpers.AnimeAdapter
+import com.example.gniar_animelist.retrofitest.helpers.AnimeDBHelper
+import com.example.gniar_animelist.retrofitest.models.AnimeModeLDb
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_anime.*
@@ -24,7 +23,8 @@ import java.io.IOException
 import java.util.*
 
 class DetailAnime : AppCompatActivity() {
-
+    private val Helper = AnimeDBHelper(this)
+    private var animeForDB : AnimeModeLDb? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getSupportActionBar()?.hide()
@@ -32,40 +32,67 @@ class DetailAnime : AppCompatActivity() {
         var bundle :Bundle? = intent.extras
         var mal_id = bundle!!.getString("mal_id")
 
+
         fetchApi("https://api.jikan.moe/v3/anime/$mal_id")
+
         btnAddToList.setOnClickListener {
-            Toast.makeText(this, "Coming Soon!", Toast.LENGTH_LONG).show()
+            animeForDB?.let { it1 -> Helper.populateAnime(it1) }
+            Toast.makeText(this, "Succesfully added to My List", Toast.LENGTH_LONG).show()
+            if (mal_id != null) {
+                detectList(mal_id)
+            }
+        }
+        btnRemoveFromlist.setOnClickListener {
+            if (mal_id != null) {
+                Helper.removeFavorite(mal_id)
+                Toast.makeText(this, "Succesfully remove from My List", Toast.LENGTH_LONG).show()
+                detectList(mal_id)
+            }
+        }
+        btnRefreshDetailAnime.setOnClickListener {
+            fetchApi("https://api.jikan.moe/v3/anime/$mal_id")
         }
         btnBack.setOnClickListener {
             finish()
         }
     }
-    private fun fetchApi(url : String) {
-        containerDetailAnime.visibility = View.GONE
-        progressBarDetailAnime.visibility = View.VISIBLE
 
+    private fun detectList(mal_id : String) {
+        val hasBeenAdded = Helper.findAnimeById(mal_id)
+        if (hasBeenAdded) {
+            btnAddToList.visibility = View.GONE
+            btnRemoveFromlist.visibility = View.VISIBLE
+        }
+        else {
+            btnAddToList.visibility = View.VISIBLE
+            btnRemoveFromlist.visibility = View.GONE
+        }
+    }
+    private fun fetchApi(url : String) {
+        containerErrorDetailAnime.visibility = View.GONE
         val request = Request.Builder().url(url).build()
 
         val client  = OkHttpClient()
         client.newCall(request).enqueue(object : okhttp3.Callback {
             override fun onFailure(call: okhttp3.Call, e: IOException) {
-                Log.d("myFetch", "something went wrong")
-                progressBarDetailAnime.visibility = View.GONE
-                Toast.makeText(this@DetailAnime, "Something went wrong", Toast.LENGTH_SHORT).show()
+
+                runOnUiThread {
+                    progressBarDetailAnime.visibility = View.GONE
+                    containerErrorDetailAnime.visibility = View.VISIBLE
+                    Toast.makeText(this@DetailAnime, "Something went wrong", Toast.LENGTH_SHORT).show()
+                }
+
             }
 
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
                 val body = response?.body()?.string()
-//                Log.d("myLog", body.toString())
                 val anime = Gson().fromJson(body.toString(), Anime::class.java)
-//                Log.d("myLog", anime.toString())
 
                 runOnUiThread {
 
-                    progressBarDetailAnime.visibility = View.GONE
-                    btnAddToList.visibility = View.VISIBLE
                     containerDetailAnime.visibility = View.VISIBLE
+                    progressBarDetailAnime.visibility = View.GONE
                     Picasso.get().load(anime.image_url).into(ivImage)
                     tvTitleDetailAnime.text = anime.title
                     tvScoreDetailAnime.text = anime.score.toString()
@@ -90,7 +117,8 @@ class DetailAnime : AppCompatActivity() {
                     tvOstEnd.text = listToString(anime, "ending_themes")
                     tvSynonyms.text = listToString(anime, "title_synonyms")
 
-
+                    animeForDB = AnimeModeLDb(anime.mal_id, anime.title, anime.image_url, listToString(anime,"genresToString"), anime.score, anime.members)
+                    detectList(anime.mal_id.toString())
                 }
 
 
@@ -166,6 +194,15 @@ class DetailAnime : AppCompatActivity() {
 
             }
 
+            "genresToString" -> {
+                for (i in anime.genres.indices) {
+                    str.append(anime.genres[i].name)
+
+                    if (i != anime.genres.size-1) {
+                        str.append(", ")
+                    }
+                }
+            }
         }
 
         return str.toString()

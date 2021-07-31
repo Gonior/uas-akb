@@ -1,11 +1,18 @@
 package com.example.gniar_animelist.menus
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gniar_animelist.R
+import com.example.gniar_animelist.adapter.MyListAnimeAdapter
+import com.example.gniar_animelist.retrofitest.helpers.AnimeDBHelper
+import com.example.gniar_animelist.retrofitest.models.AnimeModeLDb
+import kotlinx.android.synthetic.main.fragment_my_list.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,7 +28,7 @@ class MyListFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private var Helper : AnimeDBHelper? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -38,6 +45,43 @@ class MyListFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_my_list, container, false)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Helper = AnimeDBHelper(context)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        var animes = Helper!!.getAnimes()
+        if (animes.isNotEmpty()) {
+            rvMyListAnime.apply {
+                layoutManager = LinearLayoutManager(activity)
+                adapter = MyListAnimeAdapter(animes)
+            }
+        } else {
+            tvNotifMylist.visibility = View.VISIBLE
+            rvMyListAnime.apply {
+                layoutManager = LinearLayoutManager(activity)
+                adapter = MyListAnimeAdapter(animes)
+            }
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        super.onViewCreated(view, savedInstanceState)
+        var animes = Helper!!.getAnimes()
+        if (animes.isNotEmpty()) {
+            rvMyListAnime.apply {
+                layoutManager = LinearLayoutManager(activity)
+                adapter = MyListAnimeAdapter(animes)
+            }
+        } else {
+            tvNotifMylist.visibility = View.VISIBLE
+        }
+
+
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

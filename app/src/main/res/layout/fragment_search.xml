@@ -89,7 +89,31 @@
 
         android:layout_centerInParent="true"
         />
+    <RelativeLayout
+        android:id="@+id/containerErrorSearchAnime"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <TextView
+            android:id="@+id/tvErrorSearchAnime"
+            android:layout_width="wrap_content"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:textColor="@color/text_gray_400"
+            android:text="No internet connection \n Please check your internet connection! \n press button below to retry"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRefreshSearchAnime"
+            android:layout_width="wrap_content"
+            android:background="@android:color/transparent"
 
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tvErrorSearchAnime"
+            android:text="retry"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
 
 
 </RelativeLayout>

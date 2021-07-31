@@ -10,7 +10,6 @@
         android:id="@+id/imgAnimeSearch"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:src="@drawable/_1155e9a057f661774441c9ec518f66c"
         android:scaleType="fitXY"
         />
     <LinearLayout

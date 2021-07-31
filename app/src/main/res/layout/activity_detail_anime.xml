@@ -4,15 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".menus.DetailAnime">
-
-
 
     <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
-
         android:layout_alignParentTop="true"
         android:background="@android:color/transparent"
         android:layout_marginTop="10dp"
@@ -20,6 +16,7 @@
         android:layout_marginLeft="10dp"
         android:src="@drawable/ic_baseline_arrow_back_24"
         android:layout_height="wrap_content"/>
+
     <ProgressBar
         android:id="@+id/progressBarDetailAnime"
         style="?android:attr/progressBarStyle"
@@ -31,16 +28,15 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_below="@id/btnBack"
-
-        android:layout_above="@id/btnAddToList"
-        android:layout_height="0dp">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="55dp"
+        >
         <RelativeLayout
             android:id="@+id/containerDetailAnime"
             android:layout_width="match_parent"
             android:paddingTop="30dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:paddingHorizontal="20dp"
-
             android:layout_height="match_parent"
             >
             <androidx.cardview.widget.CardView
@@ -199,8 +195,7 @@
                     android:textSize="16sp"
                     android:layout_height="wrap_content"
                     android:textAlignment="textStart"
-
-                    />
+                    android:layout_gravity="start" />
                 <TextView
                     android:id="@+id/tvStatus"
                     android:layout_width="wrap_content"
@@ -489,6 +484,18 @@
 
     </ScrollView>
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnRemoveFromlist"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:text="Remove From list"
+        android:background="@android:color/transparent"
+        android:textColor="#DD0000"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAddToList"
         android:layout_width="wrap_content"
         android:visibility="gone"
@@ -499,5 +506,31 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
         android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:id="@+id/containerErrorDetailAnime"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <TextView
+            android:id="@+id/tvErrorDetailAnime"
+            android:layout_width="wrap_content"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:textColor="@color/text_gray_400"
+            android:text="No internet connection \n Please check your internet connection! \n press button below to retry"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRefreshDetailAnime"
+            android:layout_width="wrap_content"
+            android:background="@android:color/transparent"
+
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tvErrorDetailAnime"
+            android:text="retry"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
 
 </RelativeLayout>

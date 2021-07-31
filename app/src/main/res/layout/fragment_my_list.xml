@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".menus.MyListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/titleMyList"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My List"
+        android:layout_alignParentTop="true"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMyListAnime"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:layout_below="@id/titleMyList"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="0dp" />
+    <TextView
+        android:id="@+id/tvNotifMylist"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:textSize="20sp"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:text="You haven't added any anime to list"
+        android:textColor="@color/text_gray_400"/>
+</RelativeLayout>

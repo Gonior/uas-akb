@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
     private val homeFragment = HomeFragment()
     private val searchFragment = SearchFragment()
     private val myListFragment = MyListFragment()
+    private val aboutFragment = AboutFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> replaceFragment(homeFragment);
                 R.id.search_fragment -> replaceFragment(searchFragment);
                 R.id.myList -> replaceFragment(myListFragment);
+                R.id.about -> replaceFragment(aboutFragment);
                 else -> false
             }
         }

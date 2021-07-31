@@ -72,10 +72,14 @@ class SearchFragment : Fragment() {
             }
             false
         })
-
+        btnRefreshSearchAnime.setOnClickListener {
+            var query = etQuery.text
+            fetchApi("https://api.jikan.moe/v3/search/anime?q=$query","$query" )
+        }
     }
     private fun fetchApi(url : String, query : String) {
         etNotif.visibility = View.GONE
+        containerErrorSearchAnime.visibility = View.GONE
         progressBarSearch.visibility = View.VISIBLE
 
         val request = Request.Builder().url(url).build()
@@ -83,9 +87,12 @@ class SearchFragment : Fragment() {
         val client  = OkHttpClient()
         client.newCall(request).enqueue(object : okhttp3.Callback {
             override fun onFailure(call: okhttp3.Call, e: IOException) {
+                activity?.runOnUiThread {
+                    progressBarSearch.visibility = View.GONE
+                    containerErrorSearchAnime.visibility = View.VISIBLE
+                    Toast.makeText(activity, "Something went wrong", Toast.LENGTH_SHORT).show()
+                }
 
-                progressBarSearch.visibility = View.GONE
-                Toast.makeText(activity, "Something went wrong", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {

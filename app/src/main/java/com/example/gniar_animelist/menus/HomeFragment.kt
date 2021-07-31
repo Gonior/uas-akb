@@ -97,6 +97,9 @@ class HomeFragment : Fragment() {
 
         }
         fetchApi("https://api.jikan.moe/v3/season")
+        btnRefresh.setOnClickListener {
+            fetchApi("https://api.jikan.moe/v3/season/${selectedYear}/${selectedSeason}")
+        }
 
         btnFetch.setOnClickListener{
             fetchApi("https://api.jikan.moe/v3/season/${selectedYear}/${selectedSeason}")
@@ -105,23 +108,26 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchApi(url : String) {
+        containerError.visibility = View.GONE
         progressBarHome.visibility = View.VISIBLE
         val request = Request.Builder().url(url).build()
 
         val client  = OkHttpClient()
         client.newCall(request).enqueue(object : okhttp3.Callback {
             override fun onFailure(call: okhttp3.Call, e: IOException) {
-                Log.d("myFetch", "something went wrong")
-                progressBarHome.visibility = View.GONE
-                Toast.makeText(activity, "Something went wrong", Toast.LENGTH_SHORT).show()
+
+                activity?.runOnUiThread {
+                    progressBarHome.visibility = View.GONE
+                    containerError.visibility = View.VISIBLE
+                    Toast.makeText(activity, "Something went wrong", Toast.LENGTH_SHORT).show()
+                }
+
             }
 
             override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
                 val body = response?.body()?.string()
-
                 val animes = Gson().fromJson(body, Season_Base::class.java)
 
-                Log.d("mySearch", "${animes.anime}")
                 activity?.runOnUiThread {
                     titleHome.text = "List Anime -" + " $selectedSeason $selectedYear".toUpperCase()
                     progressBarHome.visibility = View.GONE
