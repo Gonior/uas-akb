@@ -16,21 +16,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         getSupportActionBar()?.hide()
         replaceFragment(homeFragment)
-        bottomNavigationView.setOnNavigationItemReselectedListener {
+
+        bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId) {
-                R.id.home -> replaceFragment(homeFragment)
-                R.id.search_fragment -> replaceFragment(searchFragment)
-                R.id.myList -> replaceFragment(myListFragment)
+                R.id.home -> replaceFragment(homeFragment);
+                R.id.search_fragment -> replaceFragment(searchFragment);
+                R.id.myList -> replaceFragment(myListFragment);
+                else -> false
             }
         }
+
     }
-    private fun replaceFragment(fragment : Fragment) {
+    private fun replaceFragment(fragment : Fragment): Boolean {
         if(fragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.flFragment, fragment)
             transaction.commit()
-        }
 
+        }
+        return true
     }
 
 }

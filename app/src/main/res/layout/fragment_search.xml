@@ -4,32 +4,91 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".menus.SearchFragment">
-    <LinearLayout
+    <RelativeLayout
+        android:background="@color/purple_700"
         android:id="@+id/headerSearch"
         android:layout_width="match_parent"
         android:padding="10dp"
         android:gravity="center_vertical"
         android:layout_height="wrap_content">
+
         <EditText
             android:id="@+id/etQuery"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:paddingLeft="30dp"
+            android:singleLine="true"
+            android:hint="eg. Tensura"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:paddingVertical="8dp"
+            android:layout_width="match_parent"
             android:textSize="20sp"
             android:background="@drawable/rounded_edit_text"
-
             android:layout_height="wrap_content"
             />
-        <ImageButton
-            android:layout_height="26dp"
-            android:layout_width="26dp"
 
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+
+            android:layout_centerVertical="true"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_baseline_search_24"
+            android:src="@drawable/ic_baseline_search_24" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/containerResultQuery"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/headerSearch"
+        android:paddingHorizontal="10dp"
+        android:layout_height="wrap_content">
+        <TextView
+
+            android:layout_height="wrap_content"
+            android:text="Result from keyword "
+            android:textColor="@color/text_gray_400"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            />
+        <TextView
+            android:id="@+id/tvResultSearchQuery"
+            android:layout_height="wrap_content"
+            android:text="asddasda"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
             />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/etNotif"
+        android:layout_width="wrap_content"
+        android:text="Your result will appear here"
+        android:visibility="visible"
+        android:textSize="16sp"
+        android:textColor="@color/text_gray_400"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvListAnimeSearch"
+        android:paddingHorizontal="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_below="@id/containerResultQuery"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        />
+    <ProgressBar
+        android:id="@+id/progressBarSearch"
+        style="?android:attr/progressBarStyle"
+        android:visibility="gone"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+
+        android:layout_centerInParent="true"
+        />
 
 
 

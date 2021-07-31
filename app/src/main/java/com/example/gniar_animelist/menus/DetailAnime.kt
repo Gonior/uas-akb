@@ -36,7 +36,9 @@ class DetailAnime : AppCompatActivity() {
         btnAddToList.setOnClickListener {
             Toast.makeText(this, "Coming Soon!", Toast.LENGTH_LONG).show()
         }
-
+        btnBack.setOnClickListener {
+            finish()
+        }
     }
     private fun fetchApi(url : String) {
         containerDetailAnime.visibility = View.GONE
@@ -62,6 +64,7 @@ class DetailAnime : AppCompatActivity() {
                 runOnUiThread {
 
                     progressBarDetailAnime.visibility = View.GONE
+                    btnAddToList.visibility = View.VISIBLE
                     containerDetailAnime.visibility = View.VISIBLE
                     Picasso.get().load(anime.image_url).into(ivImage)
                     tvTitleDetailAnime.text = anime.title
@@ -103,13 +106,16 @@ class DetailAnime : AppCompatActivity() {
 
         when (keyword) {
             "studios" -> {
-                for (i in anime.studios.indices) {
-                    str.append(anime.studios[i].name)
+                if(anime.studios.isNotEmpty()) {
+                    for (i in anime.studios.indices) {
+                        str.append(anime.studios[i].name)
 
-                    if (i != anime.studios.size-1) {
-                        str.append(", ")
+                        if (i != anime.studios.size-1) {
+                            str.append("\n")
+                        }
                     }
-                }
+                } else str.append("-")
+
             }
             "genres" -> {
                 for (i in anime.genres.indices) {
@@ -121,31 +127,43 @@ class DetailAnime : AppCompatActivity() {
                 }
             }
             "opening_themes" -> {
-                for (i in anime.opening_themes.indices) {
-                    str.append(anime.opening_themes[i])
+                if(anime.opening_themes.isNotEmpty()) {
+                    for (i in anime.opening_themes.indices) {
+                        str.append(anime.opening_themes[i])
 
-                    if (i != anime.opening_themes.size-1) {
-                        str.append(", ")
+                        if (i != anime.opening_themes.size-1) {
+                            str.append("\n")
+                        }
                     }
-                }
+                } else str.append("-")
+
             }
             "ending_themes" -> {
-                for (i in anime.ending_themes.indices) {
-                    str.append(anime.ending_themes[i])
+                if (anime.ending_themes.isNotEmpty()) {
+                    for (i in anime.ending_themes.indices) {
+                        str.append(anime.ending_themes[i])
 
-                    if (i != anime.ending_themes.size-1) {
-                        str.append(", ")
+                        if (i != anime.ending_themes.size-1) {
+                            str.append("\n")
+                        }
                     }
-                }
+                } else str.append("-")
+
+
             }
             "title_synonyms" -> {
-                for (i in anime.title_synonyms.indices) {
-                    str.append(anime.title_synonyms[i])
+                if (anime.title_synonyms.isNotEmpty()) {
+                    for (i in anime.title_synonyms.indices) {
+                        str.append(anime.title_synonyms[i])
 
-                    if (i != anime.title_synonyms.size-1) {
-                        str.append(", ")
+                        if (i != anime.title_synonyms.size-1) {
+                            str.append("\n")
+                        }
                     }
+                } else {
+                    str.append("-")
                 }
+
             }
 
         }

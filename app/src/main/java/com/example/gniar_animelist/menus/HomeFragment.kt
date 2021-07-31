@@ -113,7 +113,7 @@ class HomeFragment : Fragment() {
             override fun onFailure(call: okhttp3.Call, e: IOException) {
                 Log.d("myFetch", "something went wrong")
                 progressBarHome.visibility = View.GONE
-                Toast.makeText(activity, "Something went wrong",Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Something went wrong", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
@@ -121,9 +121,9 @@ class HomeFragment : Fragment() {
 
                 val animes = Gson().fromJson(body, Season_Base::class.java)
 
-
+                Log.d("mySearch", "${animes.anime}")
                 activity?.runOnUiThread {
-                    titleHome.text = "List Anime -"+" $selectedSeason $selectedYear".toUpperCase()
+                    titleHome.text = "List Anime -" + " $selectedSeason $selectedYear".toUpperCase()
                     progressBarHome.visibility = View.GONE
                     rvListAnime.layoutManager = LinearLayoutManager(activity)
                     rvListAnime.adapter = AnimeAdapter(animes.anime)
