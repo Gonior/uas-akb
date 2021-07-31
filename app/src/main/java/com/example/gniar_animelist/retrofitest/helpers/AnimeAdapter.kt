@@ -1,20 +1,32 @@
 package com.example.gniar_animelist.retrofitest.helpers
 
+import Anime
+import android.content.Context
+import android.content.Intent
+import android.icu.text.NumberFormat
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+
+import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.example.gniar_animelist.R
-import com.example.gniar_animelist.retrofitest.models.Anime
+import com.example.gniar_animelist.menus.DetailAnime
+import java.util.*
+
 
 class AnimeAdapter(private val animeList: List<Anime>) :RecyclerView.Adapter<AnimeAdapter.ViewHolder>() {
-
+    private var context : Context? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
+        context = parent.context
         val view  = LayoutInflater.from(parent.context).inflate(R.layout.anime_item,parent,false)
         return ViewHolder(view)
     }
@@ -26,11 +38,12 @@ class AnimeAdapter(private val animeList: List<Anime>) :RecyclerView.Adapter<Ani
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.d("Response", "List Count :${animeList.size} ")
 
 
-        return holder.bind(animeList[position])
+
+        return context?.let { holder.bind(animeList[position], it) }!!
 
     }
     class ViewHolder(itemView : View) :RecyclerView.ViewHolder(itemView) {
@@ -39,11 +52,34 @@ class AnimeAdapter(private val animeList: List<Anime>) :RecyclerView.Adapter<Ani
         var imageView = itemView.findViewById<ImageView>(R.id.imageAnime)
         var tvTitle = itemView.findViewById<TextView>(R.id.tvTitle)
         var tvScore = itemView.findViewById<TextView>(R.id.tvScore)
-        fun bind(anime: Anime) {
+        var tvMember = itemView.findViewById<TextView>(R.id.tvMember)
+        var tvGenre = itemView.findViewById<TextView>(R.id.tvGenre)
+        var tvBtnViewMore = itemView.findViewById<AppCompatButton>(R.id.btnViewMore)
 
-            val name ="Cases :${anime.score.toString()}"
+        @RequiresApi(Build.VERSION_CODES.N)
+        fun bind(anime: Anime, context: Context) {
+
+            val strGenre = StringBuilder()
+            for (i in anime.genres.indices) {
+                strGenre.append(anime.genres[i].name)
+
+                if (i != anime.genres.size-1) {
+                    strGenre.append(", ")
+                }
+            }
+
+            tvBtnViewMore.setOnClickListener {
+                Log.d("test","${anime.mal_id}")
+                val intent = Intent(context, DetailAnime::class.java)
+                intent.putExtra("mal_id", anime.mal_id.toString())
+                startActivity(context, intent, null)
+            }
+            val name ="Score ${anime.score.toString()}"
+            val members = "Member ${NumberFormat.getInstance(Locale.US).format(anime.members)}"
             tvTitle.text = anime.title
             tvScore.text = name
+            tvMember.text = members
+            tvGenre.text = strGenre
             Picasso.get().load(anime.image_url).into(imageView)
         }
 
