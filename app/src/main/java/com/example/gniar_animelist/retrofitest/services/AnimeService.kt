@@ -1,7 +1,8 @@
 package com.example.gniar_animelist.retrofitest.services
 
 
-import com.example.gniar_animelist.retrofitest.models.Anime
+import Anime
+
 import retrofit2.Call
 import retrofit2.http.GET
 

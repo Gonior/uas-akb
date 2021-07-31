@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".menus.DetailAnime">
+
+
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:layout_height="wrap_content"/>
+    <ProgressBar
+        android:id="@+id/progressBarDetailAnime"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@id/btnBack"
+
+        android:layout_above="@id/btnAddToList"
+        android:layout_height="0dp">
+        <RelativeLayout
+            android:id="@+id/containerDetailAnime"
+            android:layout_width="match_parent"
+            android:paddingTop="30dp"
+            android:visibility="visible"
+            android:paddingHorizontal="20dp"
+
+            android:layout_height="match_parent"
+            >
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardImg"
+                android:layout_width="wrap_content"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:layout_height="wrap_content"
+                >
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ivImage"
+                        android:layout_width="200dp"
+                        android:layout_height="270dp"
+                        android:layout_alignParentTop="true"
+                        android:scaleType="fitXY" />
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                android:gravity="right"
+                android:layout_alignParentRight="true"
+                android:layout_toEndOf="@+id/cardImg"
+                android:layout_toRightOf="@+id/cardImg"
+                android:layout_height="280dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:gravity="center_vertical|right"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="76dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_baseline_star_24" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:gravity="right|center_vertical"
+
+                        android:layout_height="76dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/lblScore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:textSize="14sp"
+
+                            android:layout_alignParentRight="true"
+                            android:text="Score"/>
+                        <TextView
+                            android:id="@+id/tvScoreDetailAnime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/purple_700"
+
+                            android:text="10.0"/>
+                    </LinearLayout>
+                </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rank"/>
+            <TextView
+                android:id="@+id/tvRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/purple_700"
+                android:text="#123"/>
+                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Popularity"/>
+                <TextView
+                    android:id="@+id/tvPopularity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/purple_700"
+                    android:text="#123"/>
+                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Members"/>
+                <TextView
+                    android:id="@+id/tvMembersDetailAnime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="5dp"
+                    android:text="123456"/>
+                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Favorites"/>
+                <TextView
+                    android:id="@+id/tvFavorites"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:text="1234"/>
+                />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTitleDetailAnime"
+                android:layout_width="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:textAlignment="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_below="@id/cardImg"
+                android:text="Title title title title title title title title title title"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" />
+            <LinearLayout
+                android:id="@+id/containerInfo"
+                android:layout_width="match_parent"
+                android:layout_below="@id/tvTitleDetailAnime"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="#DADADA"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvTypeAndYear"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tv,2021"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"
+
+                    />
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Airing"
+                    android:textColor="#00B1A0"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+
+                    tools:ignore="RtlCompat" />
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tvGenreDetailAnime"
+                android:layout_width="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:textAlignment="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/purple_700"
+                android:layout_below="@id/containerInfo"
+                android:text="Action  -  Adventure  -  Comedy  -  Demons  -  Magic  -  Fantasy"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" />
+            <TextView
+                android:id="@+id/lblSynopsis"
+                android:layout_below="@id/tvGenreDetailAnime"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Synopsis"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tvSynopsis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:text="@string/intro"
+                android:layout_below="@id/lblSynopsis"
+                />
+            <LinearLayout
+                android:id="@+id/containerTitleEnglish"
+                android:layout_width="match_parent"
+                android:layout_below="@id/tvSynopsis"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+
+                    android:text="English"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tvTitleEnglish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:text="Title title title title "
+                    android:layout_below="@id/lblSynopsis"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/containerTitleEnglish"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Duration"
+                        />
+                    <TextView
+                        android:id="@+id/tvDuration"
+                        android:text="Summer 2021"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Episodes"
+                        />
+                    <TextView
+                        android:id="@+id/tvEpisode"
+                        android:text="Summer 2021"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Studio" />
+                    <TextView
+                        android:id="@+id/tvStudio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8Bit"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Source"
+                        />
+                    <TextView
+                        android:id="@+id/tvSource"
+                        android:text="Light Novel"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Season"
+                        />
+                    <TextView
+                        android:id="@+id/tvSeason"
+                        android:text="Summer 2021"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rating"
+                        />
+                    <TextView
+                        android:id="@+id/tvRating"
+                        android:text="PG-13"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sysnonyms"
+                        />
+                    <TextView
+                        android:id="@+id/tvSynonyms"
+                        android:text="Tensura"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Japanese Title"
+                        />
+                    <TextView
+                        android:id="@+id/tvJapanTitle"
+                        android:text="Tensura"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Aired"
+                        />
+                    <TextView
+                        android:id="@+id/tvAired"
+                        android:text="20 Jun, 2021"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Opening Theme"
+                        />
+                    <TextView
+                        android:id="@+id/tvOstOp"
+                        android:text="'Like Flames' - by Mindaryn"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Closing Theme"
+                        />
+                    <TextView
+                        android:id="@+id/tvOstEnd"
+                        android:text="'Like Flames' - by Mindaryn"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+    <Button
+        android:id="@+id/btnAddToList"
+        android:layout_width="wrap_content"
+        android:text="Add to List"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

@@ -7,10 +7,9 @@ import androidx.fragment.app.Fragment
 import com.example.gniar_animelist.menus.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 class MainActivity : AppCompatActivity() {
     private val homeFragment = HomeFragment()
-    private val recommendationFragment = RecommendationFragment()
+    private val searchFragment = SearchFragment()
     private val myListFragment = MyListFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemReselectedListener {
             when(it.itemId) {
                 R.id.home -> replaceFragment(homeFragment)
-                R.id.recommendation -> replaceFragment(recommendationFragment)
+                R.id.search_fragment -> replaceFragment(searchFragment)
                 R.id.myList -> replaceFragment(myListFragment)
             }
         }

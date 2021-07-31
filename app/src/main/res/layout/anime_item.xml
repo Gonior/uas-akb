@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="20dp"
-    >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp">
 
     <ImageView
         android:id="@+id/imageAnime"
@@ -11,6 +11,7 @@
         android:layout_width="150dp"
         android:layout_height="200dp"/>
     <LinearLayout
+        android:id="@+id/llLabel"
         android:layout_width="wrap_content"
         android:orientation="vertical"
         android:layout_marginStart="10dp"
@@ -22,13 +23,47 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:text="Title title title title title title title title"
             />
+        <TextView
+            android:id="@+id/tvGenre"
+            android:layout_width="wrap_content"
+            android:textColor="@color/text_gray_400"
+            android:textSize="16sp"
+            android:text="genres genres genres genres genres genres genres genres genres genres"
+            android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/tvScore"
             android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
             android:text="score"
             android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvMember"
+            android:layout_width="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/text_gray_200"
+            android:text="129129"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnViewMore"
+        android:elevation="@dimen/cardview_default_elevation"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rounded_button"
+        android:textSize="14sp"
+        android:paddingVertical="2dp"
+        android:paddingHorizontal="10dp"
+        app:cornerRadius="20dp"
+        android:textColor="@color/black"
+        android:text="view more"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
