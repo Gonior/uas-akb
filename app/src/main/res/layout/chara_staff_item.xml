@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="110dp"
+    android:layout_height="320dp"
+    android:layout_marginRight="5dp">
+    <ImageView
+        android:id="@+id/ivChara"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:scaleType="fitXY"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:id="@+id/tvChara"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:paddingBottom="2dp"
+        android:paddingLeft="2dp"
+        android:layout_alignBottom="@+id/ivChara"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/background_gradient_bw"
+        android:paddingTop="10dp"
+        android:text="Tempest, Rimuru"
+        android:textColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/ivVA"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_below="@id/ivChara"
+        android:layout_height="160dp"
+        android:layout_marginBottom="5dp"/>
+    <TextView
+        android:id="@+id/tvVa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:paddingBottom="2dp"
+        android:paddingLeft="2dp"
+        android:visibility="gone"
+        android:layout_alignBottom="@+id/ivVA"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/background_gradient_bw"
+        android:paddingTop="10dp"
+        android:text="Okasaki, Miho"
+        android:textColor="@color/white" />
+</RelativeLayout>

@@ -6,7 +6,11 @@ plugins {
 
 android {
     compileSdkVersion 29
+    lintOptions {
 
+        checkReleaseBuilds false
+
+    }
     defaultConfig {
         applicationId "com.example.gniar_animelist"
         minSdkVersion 16

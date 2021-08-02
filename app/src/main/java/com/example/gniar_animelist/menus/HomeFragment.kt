@@ -2,31 +2,20 @@ package com.example.gniar_animelist.menus
 
 import Season_Base
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gniar_animelist.R
 import com.example.gniar_animelist.retrofitest.helpers.AnimeAdapter
-import com.example.gniar_animelist.retrofitest.services.AnimeService
-import com.example.gniar_animelist.retrofitest.services.ServiceBuilder
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.Request
-
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.IOException
 
 // TODO: Rename parameter arguments, choose names that match

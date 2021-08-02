@@ -57,12 +57,10 @@
         android:layout_width="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/rounded_button"
+        android:background="@android:color/transparent"
         android:textSize="14sp"
-        android:paddingVertical="2dp"
-        android:paddingHorizontal="10dp"
         app:cornerRadius="20dp"
-        android:textColor="@color/black"
+        android:textColor="@color/purple_700"
         android:text="view more"
         android:layout_height="wrap_content"/>
 

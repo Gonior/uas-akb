@@ -8,16 +8,21 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gniar_animelist.R
+import com.example.gniar_animelist.adapter.ListCharaStaffAdapter
 import com.example.gniar_animelist.retrofitest.helpers.AnimeDBHelper
 import com.example.gniar_animelist.retrofitest.models.AnimeModeLDb
+import com.example.gniar_animelist.retrofitest.models.CharaStaff
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_anime.*
 import kotlinx.android.synthetic.main.anime_item.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.Response
 import java.io.IOException
 import java.util.*
 
@@ -33,6 +38,7 @@ class DetailAnime : AppCompatActivity() {
 
 
         fetchApi("https://api.jikan.moe/v3/anime/$mal_id")
+        fetchCharaApi("https://api.jikan.moe/v3/anime/$mal_id/characters_staff")
 
         btnAddToList.setOnClickListener {
             animeForDB?.let { it1 -> Helper.populateAnime(it1) }
@@ -66,6 +72,33 @@ class DetailAnime : AppCompatActivity() {
             btnAddToList.visibility = View.VISIBLE
             btnRemoveFromlist.visibility = View.GONE
         }
+    }
+
+    private fun fetchCharaApi(url: String) {
+        val request = Request.Builder().url(url).build()
+
+        val client  = OkHttpClient()
+        client.newCall(request).enqueue(object  : okhttp3.Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Toast.makeText(this@DetailAnime, "Can't load character and staff", Toast.LENGTH_SHORT).show()
+                runOnUiThread {
+                    rvListCharaStaff.visibility = View.GONE
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val body = response?.body()?.string()
+                val charas = Gson().fromJson(body.toString(), CharaStaff::class.java)
+
+                runOnUiThread {
+                    rvListCharaStaff.apply {
+                        layoutManager = LinearLayoutManager(this@DetailAnime,LinearLayoutManager.HORIZONTAL, false)
+                        adapter = ListCharaStaffAdapter(charas.characters)
+                    }
+                }
+            }
+
+        })
     }
     private fun fetchApi(url : String) {
         containerErrorDetailAnime.visibility = View.GONE

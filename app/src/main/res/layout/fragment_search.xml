@@ -92,6 +92,7 @@
     <RelativeLayout
         android:id="@+id/containerErrorSearchAnime"
         android:visibility="gone"
+        android:background="@drawable/rounded_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
