@@ -254,7 +254,7 @@
                 android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_below="@id/lblChara"
-                android:layout_height="320dp">
+                android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
             <LinearLayout
